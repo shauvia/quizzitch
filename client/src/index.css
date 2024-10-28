@@ -1,0 +1,388 @@
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  background-color: rgba(236, 249, 254, 0.76);
+  color: rgb(95, 138, 156);
+  font-size: 1em;
+}
+
+h1 {
+  font-size: 5em;
+  text-align: left;
+  /* padding-left: 5em; */
+  margin-left: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-bottom: 15vh;
+}
+
+.menu > li{
+  border: 3px solid rgb(147, 174, 186);
+  border-radius: 1em 10em / 12em;
+  font-size: 2.5em;
+  height: 4vh;
+  width: 7em;
+  list-style-type: none;
+  margin: 0 3em 0 3em;
+  text-align: center;
+}
+
+.menu > li:hover {
+  background-color: rgb(255, 255, 255);
+  color:rgb(76, 109, 122); 
+  cursor: pointer;
+}
+
+.homePage button {
+  height: 7vh;
+  width: 15em;
+  font-size: 1.5em;
+  /* margin-top: 3vh; */
+  background-color: rgba(236, 249, 254, 0.76);
+  border: 3px solid rgb(147, 174, 186);
+  border-radius: 1em 10em / 12em;
+  color: rgb(95, 138, 156);
+  padding: 0;
+}
+
+.quizSetupPage button {
+  height: 5vh;
+  width: 12em;
+  font-size: 1.5em;
+  /* margin-top: 3vh; */
+  background-color: rgba(236, 249, 254, 0.76);
+  border: 3px solid rgb(147, 174, 186);
+  border-radius: 1em 10em / 12em;
+  color: rgb(95, 138, 156);
+  padding: 0;
+  place-items: left;
+}
+
+.homePage button:hover {
+  background-color:rgb(95, 138, 156); 
+  color: rgb(244, 252, 255);
+  cursor: pointer;
+}
+
+.quizSetupPage button:hover {
+  background-color:rgb(95, 138, 156); 
+  color: rgb(244, 252, 255);
+  cursor: pointer;
+}
+
+.homePage {
+  /* outline: 2px solid pink; */
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(3, auto);
+  row-gap: 1vh;
+  grid-template-areas:
+  "btnCreateNewQuiz"
+  "btnRecentQuizes"
+  "SearchBar";
+  place-items: center;
+}
+
+#btnCreateNewQuiz {
+  grid-area: btnCreateNewQuiz;
+}
+
+#btnRecentQuizes {
+  grid-area: btnRecentQuizes;
+}
+
+#SearchBar {
+  grid-area: SearchBar;
+  height: 5vh;
+  width: 18em;
+  font-size: 1.5em;
+  margin-top: 3vh;
+  background-color: rgb(230, 248, 255);
+  border: 3px solid rgb(105, 124, 132);
+  border-radius: 10em 1em / 12em;
+  text-align: center;
+  padding: 0;
+}
+
+#SearchBar::placeholder {
+  color: rgb(105, 124, 132);
+}
+
+.quizSetupPage {
+  margin-top: 2em;
+  /* outline: 2px solid yellow; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  column-gap: 2vw;
+  row-gap: 2vh;
+  grid-template-areas:
+  "AddQuizTitle btnAddQuizTitle"
+  "EnterQuestion ."
+  "EnterAnswer btnQAEnter"
+}
+.quizSetupPage input{
+  height: 5vh;
+  width: 20em;
+  font-size: 1.2em;
+  border-radius: 0.5em;
+  border: 3px solid rgba(147, 174, 186, 0.404);
+  justify-self: end;
+}
+
+#AddQuizTitle {
+  grid-area: AddQuizTitle;
+} 
+#btnAddQuizTitle {
+  grid-area: btnAddQuizTitle;
+}
+    
+#EnterQuestion {
+  grid-area: EnterQuestion;
+  margin-top: 2em;
+}
+#EnterAnswer {
+  grid-area: EnterAnswer;
+}
+
+#btnQAEnter {
+  grid-area: btnQAEnter;
+}
+
+.deleteQuizBtn{
+  height: 3vh;
+  width: 12em;
+  /* align-self: end; */
+  padding: 0;
+  background-color: rgb(187, 198, 202);
+  color:rgb(2, 85, 127);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+  margin-left: 8em;
+
+}
+
+.deleteQuizBtn:hover {
+  background-color: rgb(255, 255, 255);
+  color:rgb(76, 109, 122); 
+  cursor: pointer;
+}
+
+.editQuizBtn{
+  height: 3vh;
+  width: 12em;
+  /* align-self: end; */
+  padding: 0;
+  background-color: rgba(50, 120, 148, 0.76);;
+  color:rgb(255, 255, 255);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+  margin-left: 8em;
+}
+
+.editQuizBtn:hover{
+  background-color: rgb(255, 255, 255);
+  color:rgb(76, 109, 122); 
+  cursor: pointer;
+}
+
+.quiz{
+  margin-bottom: 3em;
+  /* text-align: center; */
+}
+
+#quizToFill{
+  /* height: 3vh; */
+  display: block;
+  font-size: 2em;
+   /* margin-bottom: 2em;  */
+   /* border: 1px solid rgb(2, 85, 127); */
+   text-align: center;
+}
+
+#questionToFill{
+  width: auto;
+  text-align: center;
+  margin: 1em auto 2em auto;
+}
+
+#answerToFill{
+  width: 20em;
+  text-align: center;
+  margin: 0em auto 3em auto;
+  display: block;
+}
+#mark{
+  margin-bottom: 1em;
+}
+
+#NextQuestionBtn{
+  text-align: center;
+  margin-top: 1em;
+  height: 3vh;
+  width: 30em;
+  padding: 0;
+  background-color: rgba(50, 120, 148, 0.76);
+  color:rgb(255, 255, 255);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+  
+}
+
+#NextQuestionBtn:disabled{
+  background-color: rgba(50, 120, 148, 0.306);
+} 
+
+
+#quizRecord{
+  margin-bottom: 3em;
+  text-align: center;
+}
+
+
+#displayQuizQuestion{
+  font-weight: bolder;
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  color: rgb(40, 98, 124)
+}
+
+#displayQuizAnswer{
+  background-color: rgb(255, 255, 255);
+  font-weight: bolder;
+  font-size: 1.5em;
+  border: 3px solid rgb(183, 192, 197);
+  border-radius: 0.2em;
+  width: 20em;
+  margin-left: auto;
+  margin-right: auto;
+  /*text-align: center; */
+}
+
+footer p{
+  margin-top: 3em;
+}
+
+#displayQuizTitle{
+  border: 3px solid rgb(147, 174, 186);
+  border-radius: 0.2em;
+  font-size: 2.5em;
+  height: 4vh;
+  width: 7em;
+  list-style-type: none;
+  margin: 0 3em 1em 10em;
+  text-align: center;
+}
+
+#displayQuizTitle:hover {
+  background-color: rgb(255, 255, 255);
+  color:rgb(76, 109, 122); 
+  cursor: pointer;
+}
+
+#createQuizComponent {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 2vw;
+  margin: 10em auto 0 auto;
+  row-gap: 4vh;
+  width: 75%;
+  grid-template-areas:
+  "quizTitle quizTitle . "
+  "quizQa quizQa ."
+  'nextQuestion saveQuiz .'
+
+}
+
+.quizTitle{
+  grid-area: quizTitle;
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+  height: 3vh;
+}
+
+.quizTitle::placeholder {
+  color: rgb(2, 85, 127);
+}
+
+#quizQa{
+  grid-area: quizQa;
+}
+
+#nextQuestion{
+  grid-area: nextQuestion;
+  height: 3vh;
+  width: 12em;
+  align-self: end;
+  padding: 0;
+  background-color: rgb(225, 240, 246);
+  color:rgb(2, 85, 127);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+}
+
+#saveQuiz{
+  grid-area: saveQuiz;
+  height: 3vh;
+  width: 12em;
+  background-color: rgb(225, 240, 246);
+  color:rgb(2, 85, 127);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+}
+
+#quizQa{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  grid-auto-flow: row;
+  column-gap: 2vw;
+  row-gap: 2vh;
+  
+}
+#deleteQuestion{
+  height: 3vh;
+}
+
+.quizQuestion{
+  height: 3vh;
+  background-color: rgb(228, 247, 255);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+}
+
+.quizQuestion::placeholder {
+  color: rgb(2, 85, 127);
+}
+
+.quizAnswer{
+  height: 3vh;
+  background-color: rgb(228, 247, 255);
+  border: 1px solid rgb(2, 85, 127);
+  border-radius: 3px;
+}
+
+.quizAnswer::placeholder {
+  color: rgb(2, 85, 127);
+}
+
+#saveQuiz:hover {
+  background-color:rgb(215, 225, 229)
+}
+
+
+#nextQuestion:hover {
+  background-color:rgb(215, 225, 229); 
+  /* color: rgb(244, 252, 255); */
+  cursor: pointer;
+}
