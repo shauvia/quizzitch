@@ -81,7 +81,6 @@ function App() {
   const [quizzes, setQuizzes] = useState([])
 
   const quizzesApi = "/quiz"
-  let urll = "http://localhost:3001/ruskisaper";
   const serverUrl = "http://localhost:3001";
 
   useEffect(() => {
@@ -177,35 +176,12 @@ function App() {
     updateQuizzesAPI(serverUrl, quizzesApi, newQuizzes);
     setQuizzes(newQuizzes);
     
-
+  }
     
 
   let displayQuizzLis = <DisplayQuizzes quizzesList={quizzes} handleOnDeleteQuiz={handleOnDeleteQuiz} onEditQuiz={handleOnEditQuiz} key={keyId}/>;
   
   
-  
-
-  async function getRuskiSaper(url) {
-    let response = await fetch(url,{
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-
-  if (!response.ok) {
-        let err = new Error('fetch failed, getTasks, response.status: ' +  response.status, ' response.statusText: ' +  response.statusText);
-        throw err;
-      }
-      let content = await response.json();
-      console.log("getRuskiSaper", content)
-      return content;
-  }
-  
-  
-  function kontaktujeSieZSerwerem(){
-    getRuskiSaper(urll);
-  }
 
   return (
     <>
@@ -213,7 +189,6 @@ function App() {
       { uploadHomePage ? <HomePage onCreateNewQuiz={()=>{setUploadNewQuiz(true); setUploadHomePage(false); setdisplayMyQuizzes(false)}}/> : null }
         {uploadNewQuiz ? < CreateQuiz onAddQuiz={handleAddQuiz}/> : null}
         {displayMyQuizzes ? displayQuizzLis : null}
-        <button onClick={()=> {kontaktujeSieZSerwerem()}}>Naciśnij mnie</button>
       {/* { uploadNewQuiz ? <QuizSetupPage onAddQuizTitle={handleAddQuizTitle} onAddQuizQA={handleAddQuizQA} questionList={quiz.qa} quizTitle={quiz.title}/> : null} */}
       
       <Footer/>

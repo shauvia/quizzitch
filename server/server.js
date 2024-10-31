@@ -14,6 +14,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded( {extended: false} ));
 // strict:false is needed to accept raw string
 app.use(bodyParser.json({strict:false}));
+app.use(express.static('build'));
 
 const port = process.env.PORT || 3001 // default is port 3000 (locally) but if there a different environment then use port that is default for the environment (np. strona serwowana z azurowego dysku bedzie miala domyslny port uzyty w srodowisku azura)
 
@@ -32,9 +33,6 @@ app.get("/api", (req, res) => {
   res.json({ message: "Hello from Idź w cholere!" });
 });
 
-app.get("/ruskisaper", (req,res) => {
-  res.json({message: 'Nie cierpię programować jak ruski saper!!!!!!!!'})
-});
 
 app.post("/quiz", async (req, res)=> {
   try{
