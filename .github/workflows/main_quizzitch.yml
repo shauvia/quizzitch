@@ -31,7 +31,9 @@ jobs:
           cp -r ../client/build build
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: | 
+          cd server
+          zip release.zip ./* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
