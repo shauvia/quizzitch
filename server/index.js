@@ -1,60 +1,74 @@
-const { MongoClient } = require("mongodb");
+require('@dotenvx/dotenvx').config()
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const storage = require('./mongo.js');
 
 
 
-const url = process.env.DB_URL;
-console.log(`Hello ${process.env.HELLO}`)
+const saveDataMongo = storage.saveDataMongo;
+const loadDatafromMongo = storage.loadDatafromMongo;
 
-const client = new MongoClient(url);
+const app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded( {extended: false} ));
+// strict:false is needed to accept raw string
+app.use(bodyParser.json({strict:false}));
+app.use(express.static('build'));
 
-async function saveDataMongo(data) {
-  try {
-          await client.connect();
-          console.log("Successfully connected to Atlas");
+const port = process.env.PORT || 3001 // default is port 3000 (locally) but if there a different environment then use port that is default for the environment (np. strona serwowana z azurowego dysku bedzie miala domyslny port uzyty w srodowisku azura)
 
-          // Get the database and collection on which to run the operation
-          const db = client.db("quizAppDatabase");
-          //  console.log("db", db)
-          const col = db.collection("allQuizzes");
-          //  console.log('id', id)
-          const id = "lisWitalis";
-          const filter = {_id : id};
-          console.log("filter", filter);
-          await col.deleteOne(filter);
-          const userdData = {
-            _id: "lisWitalis",
-            quizzesList: data
-          }
-          const result = await col.insertOne(userdData);
-          console.log(`A document was inserted with the _id: ${result.insertedId}`);
-    
-  
-        } finally {await client.close();}
-} 
+// let quizesList;
 
-async function loadDatafromMongo(){
-  try {
-    await client.connect();
-    console.log("Successfully connected to Atlas");
-    const db = client.db('quizAppDatabase');
-    const col = db.collection('allQuizzes');
-
-    const id = "lisWitalis";
-    const query = {_id : id};
-    const allRecords = await col.findOne(query);
-    console.log(`2Records has been read with _id: ${allRecords._id}`);
-    return allRecords.quizzesList;
-
-    
-  } finally {
-    // await client.close();
-  }
+function listening(){
+  console.log('server runnning');
+  console.log(`runnning on localhost ${port}`);
 }
-     
 
-let storage = {
-  saveDataMongo: saveDataMongo,
-  loadDatafromMongo: loadDatafromMongo,
-};
+app.get('/', (req, res) => {
+  res.send('Hello from Jasna Cholera!');
+});
 
-module.exports = storage;
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello from Idź w cholere!" });
+});
+
+
+app.post("/quiz", async (req, res)=> {
+  try{
+    let quizzesList = req.body;
+    await saveDataMongo(quizzesList);
+    console.log("server posting quizzes, quizesList", quizzesList);
+  } catch(error){
+    if (error.httpCode) {
+      res.status(error.httpCode).send(error.httpMsg);
+    } else {
+      res.status(500).send();
+      console.log('Error on the server, posting task failed: ', error);
+    }
+  }  
+    
+})
+
+app.get("/quiz", async (req,res) => {
+  try{
+    let quizzesList =  await loadDatafromMongo();
+    console.log("server get, data", quizzesList)
+    if (!quizzesList){
+      let qArr = []
+      res.send(qArr);
+    } else {
+      res.send(quizzesList);
+    }
+  } catch(error){
+      if (error.httpCode) {
+        res.status(error.httpCode).send(error.httpMsg);
+      } else {
+        res.status(500).send();
+        console.log('Error on the server, retrieveQuizzes failed: ', error)
+      }
+    }   
+});
+
+const server = app.listen(port, listening);
+
