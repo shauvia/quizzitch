@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/dotenvx run -- node index.js"
+    "start": "node index.js",
+    "start-dev": "./node_modules/.bin/dotenvx run -- node index.js"
   },
   "author": "shauvia",
   "license": "ISC",
