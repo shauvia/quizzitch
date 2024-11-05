@@ -31,7 +31,7 @@ jobs:
           cp -r ../client/build build
 
       - name: Zip artifact for deployment
-        run: 
+        run: |
           cd server
           zip ../release.zip server/* -r
 
